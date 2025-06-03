@@ -11,11 +11,13 @@ import MyApplications from '../pages/MyApplications'
 import AddJobForm from '../pages/AddJobFrom'
 import MyPostedJob from '../pages/MyPostedJob'
 import ViewApplication from '../pages/ViewApplication'
+import Error from '../pages/Error'
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout></RootLayout>,
+    errorElement : <Error></Error>,
     children: [
       {
         index: true,
@@ -23,6 +25,11 @@ export const router = createBrowserRouter([
       },
       {
         path: '/jobdetails/:id',
+        hydrateFallbackElement : (
+          <div className='flex min-h-screen justify-center items-center'>
+            <span className='loading loading-spinner text-error'></span>
+          </div>
+        ),
         loader: ({ params }) =>
           fetch(
             `https://job-portal-app-server-hazel.vercel.app/jobs/${params.id}`
@@ -63,6 +70,11 @@ export const router = createBrowserRouter([
       },
       {
         path: '/totalApplications/:jobId',
+        hydrateFallbackElement : (
+          <div className='flex min-h-screen justify-center items-center'>
+            <span className='loading loading-spinner text-error'></span>
+          </div>
+        ),
         loader: ({ params }) =>
           fetch(
             `https://job-portal-app-server-hazel.vercel.app/applications/job/${params.jobId}`
