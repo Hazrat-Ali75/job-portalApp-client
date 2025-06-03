@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+li a{
+    font-size: 17px;
+    font-weight: 500;
+}
+li a.active{
+    background: rgb(255, 68, 0);
+    color: white;
+    padding: 3px;
+    border-radius: 2px;
+    transition: 0.3s ease-out;
+}
